@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.1...v1.0.2) (2026-06-19)
+
+
+### Bug Fixes
+
+* update test entry in README.md changelog ([2e869bb](https://github.com/andrealorusso-prestiter/test-semver/commit/2e869bbf37b246e343e0c8ccb7c8e650bf74540a))
+* update test entry in README.md changelog ([ac7ff6c](https://github.com/andrealorusso-prestiter/test-semver/commit/ac7ff6ca75256447f25d28b84e23bb58bfa9294d))
+
 ## [1.0.1](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.0...v1.0.1) (2026-06-19)
 
 
