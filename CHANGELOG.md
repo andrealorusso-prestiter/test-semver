@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.0...v1.0.1) (2026-06-19)
+
+
+### Bug Fixes
+
+* restore pull_request trigger for Release Please workflow ([63657b7](https://github.com/andrealorusso-prestiter/test-semver/commit/63657b7a291119474461fbdee6c57c44b927eacd))
+* update pull_request branch from master to main in workflow ([df04097](https://github.com/andrealorusso-prestiter/test-semver/commit/df040975750cc6a4f43df33ecfa93423999a08f6))
+* update README.md with initial data table ([e4b0c06](https://github.com/andrealorusso-prestiter/test-semver/commit/e4b0c065192fc374c17bf76945fabf60bb11745f))
+
 ## 1.0.0 (2026-06-19)
 
 
