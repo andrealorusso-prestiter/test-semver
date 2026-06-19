@@ -1,4 +1,6 @@
-# test-semver
+# Test Semantic Versioning
+
+Look at automatic generated [Changelog file](CHANGELOG.md)
 
 | Data e ora       | Note    |
 | ---------------- | ------- |
