@@ -1,0 +1,10 @@
+{
+  "name": "andrealorusso-prestiter/test-semver",
+  "description": "Test project for semantic versioning with Release Please",
+  "version": "0.0.0",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0"
+  }
+}
