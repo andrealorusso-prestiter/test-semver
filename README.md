@@ -9,8 +9,6 @@ Push su main → workflow parte automaticamente
 @semantic-release/git committa entrambi i file su main con [skip ci] (per non triggerare il workflow di nuovo)
 @semantic-release/github crea il tag e la GitHub Release
 
-Ho aggiunto anche [Test.md](TEST.md).
-
 Look at automatic generated [Changelog file](CHANGELOG.md)
 
 | Data e ora       | Note    |
