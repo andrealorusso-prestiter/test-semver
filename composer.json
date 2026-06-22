@@ -1,7 +1,7 @@
 {
   "name": "andrealorusso-prestiter/test-semver",
   "description": "Test project for semantic versioning with Release Please",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "project",
   "license": "MIT",
   "require": {
