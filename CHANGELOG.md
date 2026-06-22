@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.0.0...v2.1.0) (2026-06-22)
+
+
+### Features
+
+* Merge pull request [#15](https://github.com/andrealorusso-prestiter/test-semver/issues/15) from andrealorusso-prestiter/staging ([f2634e9](https://github.com/andrealorusso-prestiter/test-semver/commit/f2634e931a9c28b826a15937bf1ad05d832e331f))
+
 # [2.0.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.1.0...v2.0.0) (2026-06-22)
 
 
