@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.1.0...v2.0.0) (2026-06-22)
+
+
+* Merge pull request [#13](https://github.com/andrealorusso-prestiter/test-semver/issues/13) from andrealorusso-prestiter/staging ([4bba0a1](https://github.com/andrealorusso-prestiter/test-semver/commit/4bba0a1ad080df4bcd3b75e228d022023a529e00))
+
+
+### BREAKING CHANGES
+
+* rimosso file TEST.md
+
 # [1.1.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.4...v1.1.0) (2026-06-22)
 
 
