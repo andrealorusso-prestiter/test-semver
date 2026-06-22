@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.1.0...v2.1.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* doc update ([6a6214b](https://github.com/andrealorusso-prestiter/test-semver/commit/6a6214b4ac089f286e892c13fea2786e87d45460))
+
 # [2.1.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.0.0...v2.1.0) (2026-06-22)
 
 
