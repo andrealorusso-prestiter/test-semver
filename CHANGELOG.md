@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.4...v1.1.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* doc update for test 21 ([78fe522](https://github.com/andrealorusso-prestiter/test-semver/commit/78fe522125f4765498107089d4ed9ed8cb65fc74))
+
+
+### Features
+
+* aggiunto link a TEST.md ([135ad98](https://github.com/andrealorusso-prestiter/test-semver/commit/135ad9899d2adc550302c99b249ec3ec93d3aaf4))
+
 ## [1.0.4](https://github.com/andrealorusso-prestiter/test-semver/compare/v1.0.3...v1.0.4) (2026-06-22)
 
 
