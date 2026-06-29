@@ -22,15 +22,4 @@ Look at automatic generated [Changelog file](CHANGELOG.md)
 
 | Data e ora       | Note    |
 | ---------------- | ------- |
-| 2026-06-19 17:09 | Test 1  |
-| 2026-06-19 17:36 | Test 2  |
-| 2026-06-19 17:40 | Test 3  |
-| 2026-06-19 17:52 | Test 4  |
-| 2026-06-19 17:55 | Test 5  |
-| 2026-06-19 17:57 | Test 6  |
-| 2026-06-19 18:02 | Test 7  |
-| 2026-06-22 11:37 | Test 2.0 |
-| 2026-06-22 11:40 | Test 2.1 |
-| 2026-06-22 12:16 | Test 2.2 - verifico che il semantic check avvenga sul titolo della pull request - no non funziona sul titolo ma sul commit sia del merge della pull che del commit sulle modifiche|
-| 2026-06-22 12:20 | Test 2.3 - verifico che il semantic check avvenga sul messaggio di merge della pull |
-| 2026-06-22 17:04 | Test 2.4 |
+| 2026-06-29 12:35 | Test 3.0 doc: |
