@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.1.1...v2.2.0) (2026-06-29)
+
+
+### Features
+
+* update node version ([5defc81](https://github.com/andrealorusso-prestiter/test-semver/commit/5defc81a21f402e701c6ecd41a064b439a337521))
+
 ## [2.1.1](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.1.0...v2.1.1) (2026-06-22)
 
 
