@@ -2,7 +2,8 @@
 
 ###############################################################################
 # Conventional Commits validation
-# Prefissi ammessi: feat:, fix:, feat!:, BREAKING CHANGE:, chore:, docs:, refactor:
+# Tipi ammessi: feat, fix, refactor, perf, style, test, docs, build, ops, chore
+# Breaking change: qualsiasi tipo con ! (es. feat!:, fix(api)!:)
 ###############################################################################
 
 COMMIT_MSG_FILE="$1"
@@ -18,14 +19,15 @@ if echo "$COMMIT_MSG" | grep -qE "^Merge (branch|pull request|remote-tracking br
     exit 0
 fi
 
-PATTERN="^(feat!|feat|fix|BREAKING CHANGE|chore|docs|refactor)(\(.+\))?: .+"
+PATTERN="^(feat|fix|refactor|perf|style|test|docs|build|ops|chore)(\(.+\))?!?: .+"
 
 if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
     echo ""
     echo "  Commit annullato: il messaggio non rispetta il formato Conventional Commits."
     echo ""
-    echo "  Formato atteso:  <tipo>: <descrizione>"
-    echo "  Tipi ammessi:    feat: | fix: | feat!: | BREAKING CHANGE: | chore: | docs: | refactor:"
+    echo "  Formato atteso:  <tipo>[(<scope>)][!]: <descrizione>"
+    echo "  Tipi ammessi:    feat | fix | refactor | perf | style | test | docs | build | ops | chore"
+    echo "  Breaking change: aggiungi ! prima dei due punti (es. feat!: o feat(api)!:)"
     echo ""
     echo "  Esempi validi:"
     echo "    feat: aggiunta validazione email nel form cliente"
@@ -33,8 +35,9 @@ if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
     echo "    chore: aggiornamento dipendenze composer"
     echo "    docs: aggiornata documentazione API pratiche"
     echo "    refactor: estratto Service_RataService da MonitoringController"
-    echo "    feat!: rimosso endpoint deprecato /api/v1/lead"
-    echo "    BREAKING CHANGE: modificata firma calcolaImporto()"
+    echo "    perf: ottimizzata query lista pratiche con indice composito"
+    echo "    feat(api)!: rimosso endpoint deprecato /api/v1/lead"
+    echo "    fix!: modificata firma calcolaImporto()"
     echo ""
     echo "  Messaggio ricevuto: \"$COMMIT_MSG\""
     echo ""
