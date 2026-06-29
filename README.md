@@ -10,13 +10,27 @@ Push su main → workflow parte automaticamente
 - @semantic-release/git committa entrambi i file su main con [skip ci] (per non triggerare il workflow di nuovo)
 - @semantic-release/github crea il tag e la GitHub Release
 
-| Prefisso commit      | Nuova Versione | Effetto sulla versione |
-|--------------------- | -------------- | ---------------------- |
-|                      | v1.0.0         |                        |
-| nessuno dei previsti | v1.0.0         | Nessuno                |
-| fix:                 | v1.0.**1**     | Incrementa Fix/Patch   |
-| feat:                | v1.**1**.0     | Incrementa Minor       |
-| BREAKING CHANGE:     | v**2**.0.0         | Incrementa Major       |
+Il messaggio deve iniziare con uno dei prefissi ammessi:
+
+| Prefisso | Significato |
+|----------|-------------|
+| `feat:` | Nuova funzionalità |
+| `fix:` | Correzione di un bug |
+| `feat!:` | Nuova funzionalità con breaking change |
+| `BREAKING CHANGE:` | Modifica incompatibile con versioni precedenti |
+| `chore:` | Manutenzione, dipendenze, configurazione |
+| `docs:` | Solo documentazione |
+| `refactor:` | Ristrutturazione codice senza cambio di comportamento |
+
+Formato: `<tipo>(<scope opzionale>): <descrizione>`
+
+```
+feat: aggiunta validazione IBAN nel form cliente
+fix: corretto calcolo importo residuo con IVA inclusa
+refactor(pratiche): estratto Service_RataService da MonitoringController
+```
+
+Se il messaggio non rispetta il formato, il commit viene bloccato con un messaggio di errore esplicativo.
 
 Look at automatic generated [Changelog file](CHANGELOG.md)
 
