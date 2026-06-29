@@ -1,3 +1,5 @@
+## [4.0.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v3.1.0...v4.0.0) (2026-06-29)
+
 ## [3.1.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v3.0.0...v3.1.0) (2026-06-29)
 
 ## [3.0.0](https://github.com/andrealorusso-prestiter/test-semver/compare/v2.2.0...v3.0.0) (2026-06-29)
