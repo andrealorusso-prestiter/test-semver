@@ -37,3 +37,4 @@ Look at automatic generated [Changelog file](CHANGELOG.md)
 | Data e ora       | Note    |
 | ---------------- | ------- |
 | 2026-06-29 12:35 | Test 3.0 doc: |
+| 2026-06-29 16:05 | Test 3.1 feat!: |
