@@ -1,0 +1,136 @@
+#!/bin/bash
+
+
+###############################################################################
+# PHP syntax check on staged files
+###############################################################################
+ERRORS=0
+PHP_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.php$')
+TPL_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.tpl$')
+FILES="$PHP_FILES $TPL_FILES"
+
+if [ -z "$PHP_FILES" ] && [ -z "$TPL_FILES" ]; then
+    echo "Non ci sono files interessati da questa analisi nel commit."
+    exit 0
+fi
+
+
+CONTAINER=""
+# Questi nomi di containers potrebbero cambiare, quindi è meglio controllare entrambi
+for C in grid-app-php82 grid-app; do
+echo "Controllo se esiste il container Docker: $C"
+    if docker inspect "$C" > /dev/null 2>&1; then
+        CONTAINER="$C"
+        echo "Container Docker trovato: $CONTAINER"
+        break
+    fi
+done
+
+
+if [ -n "$CONTAINER" ]; then
+    PHP="docker exec $CONTAINER php"
+    PHPSTAN="docker exec $CONTAINER bash -c 'cd /var/www/grid/tests && ./vendor/bin/phpstan analyse --configuration=stan/phpstan.neon --level=1 --no-progress ../__FILES_DA_TESTARE__'"
+    PHPUNIT="docker exec $CONTAINER bash -c 'cd /var/www/grid/tests && ./vendor/bin/phpunit'"
+else
+    echo "Container non trovato, uso eseguibili locali"
+    export XDEBUG_MODE=off
+    PHP="php"
+    PHPSTAN="./tests/vendor/bin/phpstan analyse --configuration=tests/stan/phpstan.neon --level=1 --no-progress __FILES_DA_TESTARE__"
+    PHPUNIT="cd ./tests && ./vendor/bin/phpunit"
+fi
+
+echo "Eseguibile PHP: $PHP"
+echo "Eseguibile PHPStan: $PHPSTAN"
+echo "Eseguibile PHPUnit: $PHPUNIT"
+echo ""
+echo "1. Eseguo test di sintassi sui files PHP..."
+for FILE in $PHP_FILES; do
+    $PHP -l "$FILE" > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        $PHP -l "$FILE"
+        ERRORS=$((ERRORS + 1))
+    fi
+ done
+
+if [ $ERRORS -gt 0 ]; then
+    echo ""
+    echo "Controllo sintassi PHP fallito: $ERRORS file con errori. Commit annullato."
+    exit 1
+fi
+
+echo "Controlli di sintassi PHP passati."
+
+
+
+###############################################################################
+# Check for forgotten debug statements (var_dump)
+# andrebbero reintrodotte cose come print_r e die ma sono diffusi nel codice
+###############################################################################
+echo ""
+echo "2. Verifico presenza di istruzioni di debug dimenticate..."
+DEBUG_ERRORS=0
+
+# Effettuo la ricerca su tutti i file interessati, 
+# escludendo le righe commentate e i files che sono nella cartella tests
+
+for FILE in $FILES; do
+    if [[ "$FILE" == tests/* ]]; then
+        continue
+    fi
+    MATCHES=$(grep -nP "(?<!->)(?<!::)\b(var_dump)\s*[;(]" "$FILE" | grep -vP "^\d+:\s*(\/\/|#)")
+    if [ -n "$MATCHES" ]; then
+        echo "Trovata(e) istruzione(i) di debug nel file $FILE:"
+        echo "$MATCHES"
+        DEBUG_ERRORS=$((DEBUG_ERRORS + 1))
+    fi
+done
+
+if [ $DEBUG_ERRORS -gt 0 ]; then
+    echo ""
+    echo "Verifica debug fallita: $DEBUG_ERRORS file(s) con istruzioni di debug dimenticate. Commit annullato."
+    exit 1
+fi
+
+echo "Verifica statement di debug passata."
+
+
+###############################################################################
+# PHPStan static analysis (level 1) on staged files
+###############################################################################
+echo ""
+echo "3. Eseguo PHPStan (level 1)..."
+
+LISTA_FILES=$(echo "$PHP_FILES" | tr '\n' ' ')
+# echo "Lista files da analizzare con PHPStan: $LISTA_FILES"
+COMANDO_PHPSTAN="${PHPSTAN/__FILES_DA_TESTARE__/$LISTA_FILES}"
+# echo "Analizzando files con PHPStan con il comando: $COMANDO_PHPSTAN"
+
+eval "$COMANDO_PHPSTAN" 2>&1
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "Analisi PHPStan fallita. Commit annullato."
+    exit 1
+fi
+
+
+
+###############################################################################
+# PHPUnit test suite
+###############################################################################
+if [ -n "$PHP_FILES" ]; then
+    echo ""
+    echo "4. Eseguo suite PHPUnit..."
+
+    eval "$PHPUNIT"
+
+    if [ $? -ne 0 ]; then
+        echo ""
+        echo "Suite PHPUnit fallita. Commit annullato."
+        exit 1
+    fi
+
+    echo "Suite PHPUnit passata."
+fi
+
+
+exit 0
